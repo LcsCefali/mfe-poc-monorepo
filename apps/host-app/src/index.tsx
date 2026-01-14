@@ -1,10 +1,7 @@
-import { Federated } from '@callstack/repack/client';
 import React, { Suspense } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 
-const Button = React.lazy(() => 
-  Federated.importModule('rootzz', './Button')
-);
+const Button = React.lazy(() => import('rootzz/Button'));
 
 const App: React.FC = () => {
   return (
@@ -12,8 +9,8 @@ const App: React.FC = () => {
       <Text style={styles.welcomeText}>Hello from Microfrontend!</Text>
 
       <Suspense fallback={<Text>Loading Button...</Text>}>
-        <Button>
-          <Text>I'm a federated Button component!</Text>
+        <Button onPress={() => Alert.alert('Teste', 'Sim mensagem de teste')}>
+          <Text style={styles.buttonText}>I'm a federated Button component!</Text>
         </Button>
       </Suspense>
     </View>
@@ -31,6 +28,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
   },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+  }
 })
 
 export default App;

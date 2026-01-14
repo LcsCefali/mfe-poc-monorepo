@@ -1,8 +1,7 @@
-import { PropsWithChildren } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, PressableProps, StyleSheet } from 'react-native';
 
-const Button: React.FC<PropsWithChildren> = ({ children }) => {
-  return <Pressable style={styles.container}>{children}</Pressable>
+const Button: React.FC<PressableProps> = (props) => {
+  return <Pressable style={styles.container} {...props} />
 }
 
 const styles = StyleSheet.create({

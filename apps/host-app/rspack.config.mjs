@@ -5,43 +5,39 @@ import * as Repack from '@callstack/repack';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default Repack.defineRspackConfig(async (env) => {
-  const { platform, devServer } = env;
+export default Repack.defineRspackConfig(async ({ mode, platform }) => {
 
   return {
+    mode,
     context: __dirname,
-    mode: devServer ? 'development' : 'production',
-    devtool: 'source-map',
     entry: './index.tsx',
     resolve: {
       ...Repack.getResolveOptions(platform),
+    },
+    output: {
+      uniqueName: 'mfe-host',
     },
     module: {
       rules: [
         {
           test: /\.[cm]?[jt]sx?$/,
-          type: 'javascript/auto',
           use: {
             loader: '@callstack/repack/babel-swc-loader',
-            options: {
-              platform,
-              devServer,
-            },
+            parallel: true,
+            options: {},
           },
+          type: 'javascript/auto',
         },
         ...Repack.getAssetTransformRules(),
       ],
     },
     plugins: [
-      new Repack.RepackPlugin({
-        platform,
-        devServer,
-      }),
-      new Repack.plugins.ModuleFederationPlugin({
+      new Repack.RepackPlugin(),
+      new Repack.plugins.ModuleFederationPluginV2({
         name: 'host',
+        dts: false,
         remotes: {
-          // Alterado de remoteEntry.bundle para container.bundle
-          rootzz: `rootzz@http://localhost:9000/container.bundle`,
+          rootzz: `rootzz@http://localhost:9000/${platform}/mf-manifest.json`,
         },
         shared: {
           react: { 

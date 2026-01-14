@@ -5,49 +5,37 @@ import * as Repack from '@callstack/repack';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default Repack.defineRspackConfig(async (env) => {
-  const { platform, devServer } = env;
-
+export default Repack.defineRspackConfig(async ({ mode, platform }) => {
   return {
+    mode,
     context: __dirname,
     entry: './index.tsx',
-    output: {
-      clean: true,
-      path: path.join(__dirname, 'build/generated', platform),
-      filename: 'index.bundle',
-      chunkFilename: '[name].bundle',
-      publicPath: devServer ? 'http://localhost:9000/' : Repack.getPublicPath({ platform, devServer }),
-    },
-    optimization: {
-      chunkIds: 'named',
-    },
     resolve: {
       ...Repack.getResolveOptions(platform),
+    },
+    output: {
+      uniqueName: 'mfe-rootzz',
     },
     module: {
       rules: [
         {
           test: /\.[cm]?[jt]sx?$/,
-          type: 'javascript/auto',
           use: {
             loader: '@callstack/repack/babel-swc-loader',
-            options: {
-              platform,
-              devServer,
-            },
+            parallel: true,
+            options: {},
           },
+          type: 'javascript/auto',
         },
-        ...Repack.getAssetTransformRules(),
+        ...Repack.getAssetTransformRules({inline: true}),
       ],
     },
     plugins: [
-      new Repack.RepackPlugin({
-        platform,
-        devServer,
-      }),
-      new Repack.plugins.ModuleFederationPlugin({
+      new Repack.RepackPlugin(),
+      new Repack.plugins.ModuleFederationPluginV2({
         name: 'rootzz',
-        filename: 'container.bundle', // Nome limpo e ideal
+        filename: 'rootzz.container.js.bundle',
+        dts: false,
         exposes: {
           './Button': './src/components/Button/index.tsx',
         },
