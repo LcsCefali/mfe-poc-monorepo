@@ -6,7 +6,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default Repack.defineRspackConfig(async ({ mode, platform }) => {
-
   return {
     mode,
     context: __dirname,
@@ -15,7 +14,7 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
       ...Repack.getResolveOptions(platform),
     },
     output: {
-      uniqueName: 'mfe-host',
+      uniqueName: 'host-app',
     },
     module: {
       rules: [
@@ -40,21 +39,8 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
           rootzz: `rootzz@http://localhost:9000/${platform}/mf-manifest.json`,
         },
         shared: {
-          react: { 
-            singleton: true, 
-            eager: true, 
-            requiredVersion: false 
-          },
-          'react-native': { 
-            singleton: true, 
-            eager: true, 
-            requiredVersion: false 
-          },
-          'react/jsx-runtime': { 
-            singleton: true, 
-            eager: true,
-            requiredVersion: false
-          },
+          react: { singleton: true, eager: true },
+          'react-native': { singleton: true, eager: true },
         },
       }),
     ],

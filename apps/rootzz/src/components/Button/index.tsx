@@ -7,7 +7,7 @@ const Button: React.FC<PressableProps> = (props) => {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    backgroundColor: 'red',
+    backgroundColor: '#713951',
     borderRadius: 5,
   }
 })

@@ -14,7 +14,7 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
       ...Repack.getResolveOptions(platform),
     },
     output: {
-      uniqueName: 'mfe-rootzz',
+      uniqueName: 'rootzz',
     },
     module: {
       rules: [
@@ -40,21 +40,8 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
           './Button': './src/components/Button/index.tsx',
         },
         shared: {
-          react: { 
-            singleton: true, 
-            eager: true, 
-            requiredVersion: false 
-          },
-          'react-native': { 
-            singleton: true, 
-            eager: true, 
-            requiredVersion: false 
-          },
-          'react/jsx-runtime': { 
-            singleton: true, 
-            eager: true,
-            requiredVersion: false
-          },
+          react: { singleton: true, eager: false },
+          'react-native': { singleton: true, eager: false },
         },
       }),
     ],

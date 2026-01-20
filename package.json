@@ -4,6 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:host": "pnpm --filter host-app start",
+    "start:rootzz": "pnpm --filter rootzz start --port 9000",
+    "run:host:android": "pnpm --filter host-app android",
+    "run:host:ios": "pnpm --filter host-app ios",
+    "create:app": "sh -c 'npx @react-native-community/cli init $0 --directory apps/$0 --skip-install'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
