@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 
-const Button = React.lazy(() => import('rootzz/Button'));
+const Button = React.lazy(() => import(''));
 
 const App: React.FC = () => {
   return (
