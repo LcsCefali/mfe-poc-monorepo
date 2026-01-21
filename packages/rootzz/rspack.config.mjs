@@ -37,7 +37,7 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
         filename: 'rootzz.container.js.bundle',
         dts: false,
         exposes: {
-          './Button': './src/components/Button/index.tsx',
+          './components': './src/components/index.ts',
         },
         shared: {
           react: { singleton: true, eager: false },

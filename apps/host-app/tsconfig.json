@@ -4,7 +4,7 @@
     "types": ["jest"],
     "baseUrl": ".",
     "paths": {
-      "rootzz/Button": ["../rootzz/src/components/Button/index.tsx"]
+      "catalog/CatalogScreen": ["../catalog-app/src/screens/CatalogScreen.tsx"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
