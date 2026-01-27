@@ -1,0 +1,24 @@
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+const CatalogScreen: React.FC = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Está é uma tela remota: de Catalogo</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 24,
+    color: '#5637DD',
+  },
+});
+
+export default CatalogScreen;
