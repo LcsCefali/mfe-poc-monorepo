@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as Repack from '@callstack/repack';
+import { getSharedDependencies } from 'mfe-poc-sdk';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -39,10 +40,7 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
         exposes: {
           './components': './src/components/index.ts',
         },
-        shared: {
-          react: { singleton: true, eager: false },
-          'react-native': { singleton: true, eager: false },
-        },
+        shared: getSharedDependencies({ eager: false }),
       }),
     ],
   };

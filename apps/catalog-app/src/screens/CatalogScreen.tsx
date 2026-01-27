@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 const CatalogScreen: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Está é uma tela remota: de Catalogo</Text>
+      <Text style={styles.text}>Está é uma tela remota: Catalogo</Text>
     </View>
   );
 };

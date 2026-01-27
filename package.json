@@ -19,6 +19,7 @@
   "packageManager": "pnpm@10.17.1",
   "devDependencies": {
     "@callstack/repack": "^5.2.3",
+    "@rnx-kit/align-deps": "^3.4.0",
     "terser-webpack-plugin": "^5.3.16",
     "webpack": "^5.104.1"
   }
