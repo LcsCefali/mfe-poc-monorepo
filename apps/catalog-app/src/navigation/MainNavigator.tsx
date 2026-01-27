@@ -11,8 +11,8 @@ const MainNavigator = () => {
   return (
     <Main.Navigator
       screenOptions={{
-        headerShown: false,
-      }} initialRouteName='Catalog'>
+        headerShown: true
+      }}>
       <Main.Screen name="Catalog" component={CatalogScreen} options={{ title: 'Catálogo' }} />
     </Main.Navigator>
   );

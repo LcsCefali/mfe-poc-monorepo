@@ -10,6 +10,7 @@
     "start:checkout": "pnpm --filter checkout-app start --port 9002",
     "run:host:android": "pnpm --filter host-app android",
     "run:host:ios": "pnpm --filter host-app ios",
+    "pod-install": "sh -c '(cd apps/$0/ios && pod install)'",
     "create:app": "sh -c 'npx @react-native-community/cli init $0 --directory apps/$1 --skip-install --skip-git-init'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
