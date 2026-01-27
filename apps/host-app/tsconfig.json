@@ -4,8 +4,8 @@
     "types": ["jest"],
     "baseUrl": ".",
     "paths": {
-      "catalog/CatalogScreen": ["../catalog-app/src/screens/CatalogScreen.tsx"]
-    }
+      "~/*": ["src/*"]
+    },
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["**/node_modules", "**/Pods"]

@@ -6,7 +6,7 @@
   "scripts": {
     "start:host": "pnpm --filter host-app start",
     "start:rootzz": "pnpm --filter rootzz start --port 9000",
-    "start:catalog": "pnpm --filter catalog-app start --port 9001",
+    "start:catalog": "pnpm --filter catalog-app start",
     "start:checkout": "pnpm --filter checkout-app start --port 9002",
     "run:host:android": "pnpm --filter host-app android",
     "run:host:ios": "pnpm --filter host-app ios",

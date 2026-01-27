@@ -4,7 +4,12 @@ import TabsNavigator from './TabsNavigator';
 
 const MainNativeStack = createNativeStackNavigator({
   screens: {
-    Tabs: TabsNavigator,
+    Tabs: {
+      screen: TabsNavigator,
+      options: {
+        headerShown: false,
+      }
+    },
   },
 })
 
