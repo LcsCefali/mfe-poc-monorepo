@@ -1,5 +1,4 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React from 'react';
 import CatalogScreen from '~/screens/CatalogScreen';
 import CheckoutScreen from '~/screens/CheckoutScreen';
 import TestScreen from '~/screens/TestScreen';
