@@ -1,0 +1,16 @@
+{
+  "name": "mfe-poc-sdk",
+  "version": "0.0.1",
+  "description": "Shared SDK for MFE POC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "mfe",
+    "sdk"
+  ],
+  "author": "",
+  "license": "ISC"
+}

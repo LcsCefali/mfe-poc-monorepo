@@ -1,0 +1,26 @@
+{
+  "react": {
+    "version": "19.2.0",
+    "shared": true
+  },
+  "react-native": {
+    "version": "0.83.1",
+    "shared": true
+  },
+  "@react-navigation/native": {
+    "version": "7.1.28",
+    "shared": true
+  },
+  "@react-navigation/native-stack": {
+    "version": "7.10.1",
+    "shared": true
+  },
+  "react-native-safe-area-context": {
+    "version": "5.6.2",
+    "shared": true
+  },
+  "react-native-screens": {
+    "version": "4.20.0",
+    "shared": true
+  }
+}
