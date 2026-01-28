@@ -11,6 +11,9 @@
   "@callstack/repack": {
     "version": "^5.2.3"
   },
+  "@eduzz/eslint-config": {
+    "version": "2.5.7-rc.0"
+  },
   "@react-native-community/cli": {
     "version": "20.0.0"
   },
@@ -21,9 +24,6 @@
     "version": "20.0.0"
   },
   "@react-native/babel-preset": {
-    "version": "0.83.1"
-  },
-  "@react-native/eslint-config": {
     "version": "0.83.1"
   },
   "@react-native/metro-config": {
@@ -50,14 +50,8 @@
   "babel-plugin-module-resolver": {
     "version": "^5.0.2"
   },
-  "eslint": {
-    "version": "^8.19.0"
-  },
   "jest": {
     "version": "^29.6.3"
-  },
-  "prettier": {
-    "version": "2.8.8"
   },
   "react-test-renderer": {
     "version": "19.2.0"

@@ -21,7 +21,7 @@ Cada aplicativo (`apps/*`) possui uma configuração no `package.json` apontando
       "mfe-poc-sdk/preset"
     ],
     "requirements": [
-      "mfe-app"
+      "react-native@0.83.1"
     ],
     "capabilities": [
       "mfe-app"
