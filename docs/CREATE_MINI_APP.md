@@ -61,7 +61,75 @@ Exemplo de configuração a adicionar/ajustar:
 }
 ```
 
-### 2.2. Configurar `rspack.config.mjs`
+### 2.2 Limpeza de Dependências de Linting
+
+O `react-native init` instala configurações padrão de ESLint e Prettier locais que entram em conflito com o padrão do monorepo.
+
+**Remova** as seguintes entradas do `package.json` do seu novo app:
+
+```json
+/* Exclua essas linhas do devDependencies se existirem */
+"eslint": "...",
+"prettier": "...",
+"@react-native/eslint-config": "...",
+"@react-native-community/eslint-config": "...",
+"eslint-config-prettier": "...",
+"eslint-plugin-prettier": "..."
+```
+
+**Garanta** que o `eslint.config.js` na raiz do seu novo app tenha o seguinte conteúdo para herdar as regras da Eduzz:
+
+```javascript
+/* apps/<seu-app>/eslint.config.js */
+const { ignores, configs } = require('@eduzz/eslint-config/react-native');
+
+/** @type import('eslint').Linter.Config[] */
+module.exports = [...configs, { ignores: [...ignores(), 'rspack.config.mjs'] }];
+```
+
+**Configure** o `.prettierrc.js` na raiz do seu novo app para usar as configurações compartilhadas:
+
+```javascript
+/* apps/<seu-app>/.prettierrc.js */
+module.exports = {
+  ...require('@eduzz/eslint-config/.prettierrc')
+};
+```
+
+> **Nota:** Se houver arquivos de configuração antigos como `.eslintrc.js` ou `.prettierrc` (JSON), apague-os.
+
+### 2.3. Adicionar Scripts Padrão
+
+Para garantir a integração com os comandos da raiz do monorepo, atualize a seção `scripts` do `package.json` do seu app com os seguintes comandos padrão (ajuste a porta do `start` conforme necessário):
+
+```json
+"scripts": {
+  "android": "react-native run-android",
+  "ios": "react-native run-ios",
+  "start": "react-native start --port <ESCOLHA_UMA_PORTA_UNICA>",
+  "test": "jest",
+  "lint": "eslint .",
+  "typecheck": "tsc",
+  "bundle:ios": "react-native bundle --platform ios --entry-file index.js --dev false",
+  "bundle:android": "react-native bundle --platform android --entry-file index.js --dev false",
+  "pods": "(cd ios && bundle install && bundle exec pod install)",
+  "pods:update": "(cd ios && bundle exec pod update)",
+  "align-deps": "rnx-align-deps --write",
+  "check-deps": "rnx-align-deps"
+},
+```
+
+### 2.4. Executar Alinhamento de Dependências
+
+Após ajustar o `package.json` removendo as libs conflitantes e adicionando/configurando o SDK, execute o script de alinhamento na raiz do monorepo. Isso irá instalar as versões corretas das dependências (incluindo o ESLint correto via preset).
+
+```bash
+# Na raiz do monorepo
+pnpm --filter <nome-do-pacote-no-package-json> align-deps
+pnpm install
+```
+
+### 2.5. Configurar `rspack.config.mjs`
 
 Em vez de criar o arquivo manualmente, utilize o CLI do Re.Pack para gerar a configuração inicial. Criamos um script helper para isso:
 
@@ -134,14 +202,14 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
 });
 ```
 
-### 2.3. Alinhar Dependências
+### 2.6. Alinhar Dependências
 
 Após configurar o `rnx-kit` no `package.json`, primeiro instale as dependências para que o SDK seja reconhecido no workspace, e então execute o alinhamento.
 
 ```bash
 # Na raiz do monorepo
 pnpm install
-pnpm rnx-align-deps apps/<nome-da-pasta> --write
+pnpm --filter <nome-do-pacote> align-deps
 ```
 Ou se você adicionar o script no package.json do seu app.
 
@@ -172,3 +240,17 @@ const CheckoutApp = React.lazy(() => import('checkout/App'));
   <CheckoutApp />
 </React.Suspense>
 ```
+
+## 5. FAQ e Decisões Arquiteturais
+
+### Por que remover o ESLint local?
+
+Utilizamos o `@eduzz/eslint-config` que já gerencia as dependências do ESLint e Prettier de forma centralizada. Manter instalações locais causa conflitos de versão e comportamento de "looping" nas correções automáticas.
+
+### Podemos automatizar essa limpeza?
+
+Sim, é possível criar scripts pós-inicialização (`post-init`) que limpem o `package.json` programaticamente. Atualmente, o processo é manual ou garantido via `rnx-align-deps` (desde que as entradas manuais sejam removidas).
+
+### Devemos criar um pacote separado para configuração?
+
+Atualmente, o `packages/sdk` atua como a *Source of Truth* para versões de dependências (incluindo linter) através do `rnx-align-deps`. A configuração em si (`eslint.config.js`) é simples o suficiente para ser replicada via boilerplate ou importação direta, não necessitando de um pacote wrapper adicional além do SDK e da própria lib da Eduzz.

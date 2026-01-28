@@ -21,7 +21,7 @@ Cada aplicativo (`apps/*`) possui uma configuração no `package.json` apontando
       "mfe-poc-sdk/preset"
     ],
     "requirements": [
-      "mfe-app"
+      "react-native@0.83.1"
     ],
     "capabilities": [
       "mfe-app"
@@ -37,15 +37,21 @@ Sempre que você adicionar uma nova dependência, modificar o `package.json` man
 Execute na raiz do monorepo:
 
 ```bash
-# Verifica e ajusta dependências para um app específico
-pnpm rnx-align-deps apps/catalog-app --write
+# Verifica e ajusta dependências em TODOS os pacotes (recursivamente)
+pnpm align-deps
 ```
 
-Ou para todos os pacotes (se configurado script recursivo ou rodando um por um):
+Se desejar apenas verificar se há erros sem corrigir automaticamente:
 
 ```bash
-# Exemplo genérico
-npx rnx-align-deps --write
+# Apenas verificação
+pnpm check-deps
+```
+
+Se precisar rodar apenas em um app específico:
+
+```bash
+pnpm --filter catalog-app align-deps
 ```
 
 A flag `--write` autoriza a ferramenta a modificar seu `package.json` removendo versões conflitantes e configurando as versões corretas definidas no preset.

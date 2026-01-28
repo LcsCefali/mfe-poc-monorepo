@@ -38,7 +38,8 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
         filename: 'rootzz.container.js.bundle',
         dts: false,
         exposes: {
-          './components': './src/components/index.ts',
+          './components': './src/components',
+          './Button': './src/components/Button',
         },
         shared: getSharedDependencies({ eager: false }),
       }),

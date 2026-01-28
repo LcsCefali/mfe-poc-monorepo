@@ -42,12 +42,10 @@ Bibliotecas que precisam ser **singletons** (única instância na memória) ou q
     Agora você precisa propagar essa nova dependência (ou versão) para os apps.
 
     ```bash
-    pnpm rnx-align-deps apps/host-app --write
-    pnpm rnx-align-deps apps/catalog-app --write
-    # ... repita para outros apps
+    pnpm align-deps
     ```
 
-    Isso vai adicionar a `minha-nova-lib` no `package.json` dos apps com a versão `1.2.3`.
+    Isso vai percorrer todos os apps e adicionar/corrigir a `minha-nova-lib` no `package.json` dos apps com a versão `1.2.3`.
 
 4.  **Instalar:**
     Rode `pnpm install` na raiz para baixar os pacotes.

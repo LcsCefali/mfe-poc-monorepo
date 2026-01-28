@@ -21,16 +21,14 @@ Isso irá instalar as dependências de todos os apps e pacotes do workspace.
 
 ## 2. Instalação de Pods (iOS)
 
-Se você for rodar no iOS, precisa instalar os pods para cada app que deseja executar nativamente (geralmente só o Host App). Criamos um script utilitário para facilitar:
+Se você for rodar no iOS, precisa instalar os pods para cada app que deseja executar nativamente (geralmente só o Host App). Criamos scripts utilitários para facilitar:
 
 ```bash
-# Sintaxe: pnpm pod-install <nome-da-pasta-do-app>
+# Instalar pods apenas do Host App (mais comum)
+pnpm pod host-app
 
-# Exemplo: Instalar pods do Host App
-pnpm pod-install host-app
-
-# Exemplo: Instalar pods de um App específico (se for rodar standalone)
-pnpm pod-install catalog-app
+# OU: Instalar pods de TODOS os apps recursivamente
+pnpm pods
 ```
 
 ## 3. Rodando os Servidores Metro (Packagers)
