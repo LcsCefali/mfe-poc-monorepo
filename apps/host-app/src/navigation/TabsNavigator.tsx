@@ -9,13 +9,14 @@ const TabsNavigator = createBottomTabNavigator({
     Catalog: {
       screen: CatalogScreen,
       options: {
-        headerShown: false
+        headerShown: false,
+        title: 'Catálogo'
       }
     },
     Checkout: {
       screen: CheckoutScreen,
       options: {
-        title: 'Default RN project'
+        title: 'Checkout'
       }
     },
     TestScreen: {

@@ -2,7 +2,13 @@ import React from 'react';
 
 import Fallback from '../components/Fallback';
 
-const CheckoutAppRemote = React.lazy(() => import('checkout/App'));
+const CheckoutAppRemote = React.lazy(async () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(import('checkout/App'));
+    }, 3000); // delay de 3 segundos
+  });
+});
 
 const CheckoutScreen: React.FC = () => {
   return (

@@ -48,7 +48,9 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
         exposes: {
           './App': './src/App',
           './TestScreen': './src/screens/TestScreen',
-          // './MainNavigator': './src/navigation/MainNavigator',
+        },
+        remotes: {
+          rootzz: `rootzz@http://localhost:9000/${platform}/mf-manifest.json`,
         },
         shared: getSharedDependencies({ eager: false }),
       }),

@@ -1,6 +1,8 @@
 import { Pressable, type PressableProps, StyleSheet } from 'react-native';
 
-const Button: React.FC<PressableProps> = props => {
+import Title from './components/Title';
+
+const Button: React.FC<PressableProps> & { Title: typeof Title } = props => {
   return <Pressable style={styles.container} {...props} />;
 };
 
@@ -11,5 +13,7 @@ const styles = StyleSheet.create({
     borderRadius: 5
   }
 });
+
+Button.Title = Title;
 
 export default Button;
