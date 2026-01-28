@@ -40,7 +40,7 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
         remotes: {
           rootzz: `rootzz@http://localhost:9000/${platform}/mf-manifest.json`,
           catalog: `catalog@http://localhost:9001/${platform}/mf-manifest.json`,
-          // checkout: `checkout@http://localhost:9002/${platform}/mf-manifest.json`,
+          checkout: `checkout@http://localhost:9002/${platform}/mf-manifest.json`,
         },
         shared: getSharedDependencies({ eager: true }),
       }),

@@ -52,6 +52,27 @@ A flag `--write` autoriza a ferramenta a modificar seu `package.json` removendo 
 
 Se você esquecer de rodar, pode encontrar erros de build ou runtime devido a versões desencontradas de bibliotecas core.
 
+## FAQ / Troubleshooting
+
+### Por que ele pede para instalar dependências que eu não uso?
+Se o `rnx-align-deps` está exigindo bibliotecas (como `@react-navigation` ou outras) que seu código não importa, é porque na configuração do `package.json` você incluiu a capability `mfe-app`.
+
+```json
+"capabilities": [
+  "mfe-app" 
+]
+```
+
+O perfil `mfe-app` (definido no SDK) agrupa todas as dependências padrão da arquitetura. 
+*   **Recomendado:** Mantenha instalado. Isso garante que seu app siga o padrão da plataforma e evita erros caso você precise usar essas libs no futuro. Como são versões compartilhadas (`shared`), o impacto no bundle final é nulo (o código vem do Host).
+*   **Alternativa:** Se você quer um controle granular e minimalista, remova `mfe-app` e liste apenas as capabilities individuais que deseja:
+    ```json
+    "capabilities": [
+      "react",
+      "react-native"
+    ]
+    ```
+
 Também é possível rodar sem a flag para modificar, assim podemos gerar um relatório antes de prosseguir.
 
 ```bash

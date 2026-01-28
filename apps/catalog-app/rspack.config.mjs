@@ -47,6 +47,7 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
         dts: false,
         exposes: {
           './App': './src/App',
+          './TestScreen': './src/screens/TestScreen',
           // './MainNavigator': './src/navigation/MainNavigator',
         },
         shared: getSharedDependencies({ eager: false }),

@@ -5,7 +5,7 @@ const CatalogAppRemote = React.lazy(() => import('catalog/App'));
 
 const CatalogScreen: React.FC = () => {
   return (
-    <React.Suspense fallback={<Fallback label='Carregando papai... xd'/>}>
+    <React.Suspense fallback={<Fallback label='Carregando Catálogo...'/>}>
       <CatalogAppRemote />
     </React.Suspense>
   );

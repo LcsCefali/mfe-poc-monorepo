@@ -45,14 +45,20 @@ pnpm start:catalog
 # Roda na porta 9001
 ```
 
-**Terminal 2: Rootzz App (Exemplo)**
+**Terminal 2: Checkout App**
 ```bash
-pnpm start:rootzz
-# Roda na porta 9000
+pnpm start:checkout
+# Roda na porta 9002
 ```
 
 **Terminal 3: Outros apps...**
 Verifique o `package.json` na raiz para ver os scripts disponíveis (`start:checkout`, etc).
+
+**Terminal 4: Rootzz App (Caso faça o uso)**
+```bash
+pnpm start:rootzz
+# Roda na porta 9000
+```
 
 ## 4. Rodando o Aplicativo Nativo (Host)
 
