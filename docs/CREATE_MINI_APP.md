@@ -98,17 +98,38 @@ module.exports = {
 
 > **Nota:** Se houver arquivos de configuração antigos como `.eslintrc.js` ou `.prettierrc` (JSON), apague-os.
 
-### 2.3. Executar Alinhamento de Dependências
+### 2.3. Adicionar Scripts Padrão
+
+Para garantir a integração com os comandos da raiz do monorepo, atualize a seção `scripts` do `package.json` do seu app com os seguintes comandos padrão (ajuste a porta do `start` conforme necessário):
+
+```json
+"scripts": {
+  "android": "react-native run-android",
+  "ios": "react-native run-ios",
+  "start": "react-native start --port <ESCOLHA_UMA_PORTA_UNICA>",
+  "test": "jest",
+  "lint": "eslint .",
+  "typecheck": "tsc",
+  "bundle:ios": "react-native bundle --platform ios --entry-file index.js --dev false",
+  "bundle:android": "react-native bundle --platform android --entry-file index.js --dev false",
+  "pods": "(cd ios && bundle install && bundle exec pod install)",
+  "pods:update": "(cd ios && bundle exec pod update)",
+  "align-deps": "rnx-align-deps --write",
+  "check-deps": "rnx-align-deps"
+},
+```
+
+### 2.4. Executar Alinhamento de Dependências
 
 Após ajustar o `package.json` removendo as libs conflitantes e adicionando/configurando o SDK, execute o script de alinhamento na raiz do monorepo. Isso irá instalar as versões corretas das dependências (incluindo o ESLint correto via preset).
 
 ```bash
 # Na raiz do monorepo
-pnpm rnx-align-deps apps/<nome-da-pasta> --write
+pnpm --filter <nome-do-pacote-no-package-json> align-deps
 pnpm install
 ```
 
-### 2.4. Configurar `rspack.config.mjs`
+### 2.5. Configurar `rspack.config.mjs`
 
 Em vez de criar o arquivo manualmente, utilize o CLI do Re.Pack para gerar a configuração inicial. Criamos um script helper para isso:
 
@@ -181,14 +202,14 @@ export default Repack.defineRspackConfig(async ({ mode, platform }) => {
 });
 ```
 
-### 2.5. Alinhar Dependências
+### 2.6. Alinhar Dependências
 
 Após configurar o `rnx-kit` no `package.json`, primeiro instale as dependências para que o SDK seja reconhecido no workspace, e então execute o alinhamento.
 
 ```bash
 # Na raiz do monorepo
 pnpm install
-pnpm rnx-align-deps apps/<nome-da-pasta> --write
+pnpm --filter <nome-do-pacote> align-deps
 ```
 Ou se você adicionar o script no package.json do seu app.
 

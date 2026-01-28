@@ -21,5 +21,5 @@ Toda a documentação técnica encontra-se na pasta `/docs`. Abaixo está um gui
 
 ### ⚙️ Arquitetura e Ferramentas
 *   **[Alinhamento de Dependências (RNX Kit)](docs/RNX_ALIGN_DEPS.md)**  
-    Explicação sobre o uso do `rnx-align-deps` para garantir consistência de versões (React, RN, Navigation) e evitar conflitos de "Multiple Instances of React".
+    Explicação sobre o uso do `rnx-align-deps` para garantir consistência de versões (React, RN, Navigation) e evitar conflitos de "Multiple Instances of React". Use os scripts `pnpm align-deps` e `pnpm check-deps`.
 
