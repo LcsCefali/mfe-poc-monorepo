@@ -1,5 +1,6 @@
 import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import TabsNavigator from './TabsNavigator';
 
 const MainNativeStack = createNativeStackNavigator({
@@ -7,11 +8,11 @@ const MainNativeStack = createNativeStackNavigator({
     Tabs: {
       screen: TabsNavigator,
       options: {
-        headerShown: false,
+        headerShown: false
       }
-    },
-  },
-})
+    }
+  }
+});
 
 const MainNavigator = createStaticNavigation(MainNativeStack);
 

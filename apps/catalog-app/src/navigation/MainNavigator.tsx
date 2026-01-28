@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import CatalogScreen from '../screens/CatalogScreen';
 
 export type MainStackParamList = {
@@ -12,8 +13,9 @@ const MainNavigator = () => {
     <Main.Navigator
       screenOptions={{
         headerShown: true
-      }}>
-      <Main.Screen name="Catalog" component={CatalogScreen} options={{ title: 'Catálogo' }} />
+      }}
+    >
+      <Main.Screen name='Catalog' component={CatalogScreen} options={{ title: 'Catálogo' }} />
     </Main.Navigator>
   );
 };

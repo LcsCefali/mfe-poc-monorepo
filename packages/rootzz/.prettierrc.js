@@ -1,5 +1,3 @@
 module.exports = {
-  arrowParens: 'avoid',
-  singleQuote: true,
-  trailingComma: 'all',
+  ...require('@eduzz/eslint-config/.prettierrc')
 };

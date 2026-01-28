@@ -10,21 +10,21 @@
  *
  */
 const addSdkCapabilities = (dependencies, devDependencies) => {
-  const path = require("path");
+  // const path = require('path');
   // Assuming this file is in lib/, we go one level up to check package.json
-  const sdkPackagePath = path.resolve(__dirname, "..", "package.json");
-  const sdkPackageJson = require(sdkPackagePath);
+  // const sdkPackagePath = path.resolve(__dirname, '..', 'package.json');
+  // const sdkPackageJson = require(sdkPackagePath);
 
   const allDeps = { ...dependencies, ...devDependencies };
   const profile = {};
 
   // Inject 'name' property if missing, ensuring rnx-kit accepts it as a capability
-  Object.keys(allDeps).forEach((key) => {
+  Object.keys(allDeps).forEach(key => {
     const isDev = !!devDependencies[key];
     profile[key] = {
       name: key,
       ...allDeps[key],
-      devOnly: isDev,
+      devOnly: isDev
     };
   });
 
@@ -35,16 +35,13 @@ const addSdkCapabilities = (dependencies, devDependencies) => {
   // };
 
   return Object.assign(profile, {
-    "mfe-app": {
-      name: "#meta",
-      capabilities: Object.keys(profile),
-    },
+    'mfe-app': {
+      name: '#meta',
+      capabilities: Object.keys(profile)
+    }
   });
 };
 
 module.exports = {
-  main: addSdkCapabilities(
-    require("../dependencies.json"),
-    require("../devDependencies.json")
-  ),
+  main: addSdkCapabilities(require('../dependencies.json'), require('../devDependencies.json'))
 };

@@ -13,6 +13,7 @@
     "pod-install": "sh -c '(cd apps/$0/ios && pod install)'",
     "prepare:repack": "sh -c '(cd apps/$0 && pnpm dlx @callstack/repack-init)'",
     "create:app": "sh -c 'npx @react-native-community/cli init $0 --directory apps/$1 --skip-install --skip-git-init'",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,7 +22,9 @@
   "packageManager": "pnpm@10.17.1",
   "devDependencies": {
     "@callstack/repack": "^5.2.3",
+    "@eduzz/eslint-config": "2.5.7-rc.0",
     "@rnx-kit/align-deps": "^3.4.0",
+    "eslint": "^8.57.1",
     "terser-webpack-plugin": "^5.3.16",
     "webpack": "^5.104.1"
   }

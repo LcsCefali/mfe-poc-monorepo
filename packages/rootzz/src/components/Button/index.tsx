@@ -1,16 +1,15 @@
-import { Pressable, PressableProps, StyleSheet } from 'react-native';
+import { Pressable, type PressableProps, StyleSheet } from 'react-native';
 
-const Button: React.FC<PressableProps> = (props) => {
-  return <Pressable style={styles.container} {...props} />
-}
+const Button: React.FC<PressableProps> = props => {
+  return <Pressable style={styles.container} {...props} />;
+};
 
 const styles = StyleSheet.create({
   container: {
     padding: 10,
     backgroundColor: '#713951',
-    borderRadius: 5,
+    borderRadius: 5
   }
-})
-
+});
 
 export default Button;

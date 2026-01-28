@@ -1,7 +1,7 @@
 import MainNavigator from './navigation/MainNavigator';
 
 const App: React.FC = () => {
-  return <MainNavigator />
+  return <MainNavigator />;
 };
 
 export default App;
