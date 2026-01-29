@@ -10,11 +10,6 @@
  *
  */
 const addSdkCapabilities = (dependencies, devDependencies) => {
-  // const path = require('path');
-  // Assuming this file is in lib/, we go one level up to check package.json
-  // const sdkPackagePath = path.resolve(__dirname, '..', 'package.json');
-  // const sdkPackageJson = require(sdkPackagePath);
-
   const allDeps = { ...dependencies, ...devDependencies };
   const profile = {};
 
@@ -28,11 +23,11 @@ const addSdkCapabilities = (dependencies, devDependencies) => {
     };
   });
 
-  // profile["mfe-poc-sdk"] = {
-  //   name: "mfe-poc-sdk",
-  //   version: "workspace:*",
-  //   devOnly: true,
-  // };
+  profile["mfe-poc-sdk"] = {
+    name: "mfe-poc-sdk",
+    version: "workspace:*",
+    devOnly: true,
+  };
 
   return Object.assign(profile, {
     'mfe-app': {
